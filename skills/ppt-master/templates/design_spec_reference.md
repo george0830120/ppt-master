@@ -14,7 +14,7 @@
 | **Design Style** | {design_style} |
 | **Target Audience** | [Filled by Strategist] |
 | **Use Case** | [Filled by Strategist] |
-| **Content Strategy** | [Material divergence — the user's free-text intent on how closely to follow the source vs how freely to reshape it (or "balanced default"); facts stay sourced however free. Confirmed at c; consumed when authoring §IX. Not in spec_lock.] |
+| **Content Strategy** | [Material divergence — the user's free-text intent on how closely to follow the source vs how freely to reshape it (or "balanced default"); facts stay sourced however free. Confirmed at c; consumed when authoring §IX. Not in spec_lock. When `narrative.md` exists (default path), summarize the agreed narrative spine — audience / objective / arc — here; the divergence decision is the narrative itself.] |
 | **Created Date** | {date_str} |
 
 ---
@@ -296,6 +296,8 @@ Catalog read: 71 templates
 ---
 
 ## IX. Content Outline
+
+> **Materializes `narrative.md` (when present — the default main-pipeline path).** Each agreed **beat** becomes one or more pages here, in beat order; the page's **Core message** carries that beat's persuasive purpose. Beats are not pages — decide how many pages each beat needs under the confirmed page count. See [`narrative-planner.md`](../references/narrative-planner.md) §4 and [`strategist.md §6.1`](../references/strategist.md). On preservation paths (beautify / template-fill) there is no `narrative.md`; author §IX directly from the source.
 
 ### Part 1: [Chapter Name]
 

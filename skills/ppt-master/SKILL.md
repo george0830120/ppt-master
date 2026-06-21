@@ -11,7 +11,7 @@ description: >
 
 > AI-driven multi-format SVG content generation system. Converts source documents into high-quality SVG pages through multi-role collaboration and exports to PPTX.
 
-**Core Pipeline**: `Source Document → Create Project → [Template] → Strategist → [Image_Generator] → Executor Live Preview → Quality Check → Post-processing → Export`
+**Core Pipeline**: `Source Document → Create Project → [Template] → Narrative Planning → Strategist → [Image_Generator] → Executor Live Preview → Quality Check → Post-processing → Export`
 
 > [!CAUTION]
 > ## 🚨 Global Execution Discipline (MANDATORY)
@@ -293,18 +293,52 @@ When fusion happens (any multi-path case), the resulting `<project>/templates/de
 
 Single-path Step 3 does **not** add provenance (the source is self-evident from the copied files).
 
-**✅ Checkpoint — Default path proceeds to Step 4 without user interaction. If the user supplied one or more explicit template paths, those have been dispatched (or fused) into `<project_path>/templates/` before advancing.**
+**✅ Checkpoint — Default path proceeds to Step 3.5 without user interaction. If the user supplied one or more explicit template paths, those have been dispatched (or fused) into `<project_path>/templates/` before advancing.**
+
+---
+
+### Step 3.5: Narrative Planning Phase (default — runs every deck; the user may skip the discussion)
+
+🚧 **GATE**: Step 2 complete (source content ready); Step 3 template decision made.
+
+> **Preservation paths skip this Step.** The [`beautify-pptx`](workflows/beautify-pptx.md) and [`template-fill-pptx`](workflows/template-fill-pptx.md) routes keep the source's content and page split verbatim — there is no narrative to plan, so they do not enter this Step.
+
+First, read the role definition:
+```
+Read references/narrative-planner.md
+```
+
+This phase settles the deck's **narrative spine** — who it speaks to, what they must remember or do, how the argument advances from open to close, what each movement is for, and how it is delivered aloud — and writes it to `<project_path>/narrative.md`. That file is the **input to the Strategist's §IX Content Outline** and pre-settles audience / mode / material divergence in the Step 4 Eight Confirmations (see Step 4 and [`narrative-planner.md`](references/narrative-planner.md) §4).
+
+**Default-on, skippable.** The phase ALWAYS drafts `narrative.md` from the source — so even a user who skips the discussion hands the Strategist a real narrative spine. "Skip" means **skip the collaborative discussion only**; the draft is always written and always feeds the Strategist. There is no path that discards the narrative.
+
+⛔ **BLOCKING**: present the drafted narrative in prose and wait for the user to **revise** (loop until they are satisfied) or **accept / skip** (e.g. "继续" / "跳过" → adopt the draft as-is). Surface the skip option as one short line so "default-on but skippable" is legible.
+
+> **Boundary — beat, not page.** Plan movements of the argument, not a slide roster. Page count, layout, color, type, and concrete slide titles are the Strategist's, never decided here. Facts stay sourced — the narrative develops what the source contains, never invents. Full role contract in [`narrative-planner.md`](references/narrative-planner.md).
+
+**Output**: `<project_path>/narrative.md` (schema in [`narrative-planner.md`](references/narrative-planner.md) §3).
+
+**✅ Checkpoint — Narrative spine agreed, auto-proceed to Step 4**:
+```markdown
+## ✅ Narrative Planning Phase Complete
+- [x] Source read; narrative drafted from real content (facts stay sourced)
+- [x] Five elements settled: audience / objective / arc / per-beat purpose / delivery
+- [x] User revised or skipped the discussion; `narrative.md` written either way
+- [ ] **Next**: Strategist reads `narrative.md` as the §IX input and pre-settled c/d
+```
 
 ---
 
 ### Step 4: Strategist Phase (MANDATORY — cannot be skipped)
 
-🚧 **GATE**: Step 3 complete; default free-design path taken, or (if triggered) template files copied into the project.
+🚧 **GATE**: Step 3 complete; default free-design path taken, or (if triggered) template files copied into the project. Step 3.5 complete; `<project_path>/narrative.md` exists (written on every main-pipeline run, whether the user discussed or skipped).
 
 First, read the role definition:
 ```
 Read references/strategist.md
 ```
+
+> **Read `narrative.md` first (default — it exists on every main-pipeline run).** It is the agreed **narrative spine** and is the input to the §IX Content Outline: each beat materializes into one or more pages, and a page's core message carries its beat's persuasive purpose. It also **pre-settles** three Eight-Confirmation items — present these as *confirm-the-given*, not ask-fresh: **audience** (c, distilled to one line), **material divergence** (c, the narrative is the concrete reshaping decision), and **mode** (d Layer 1, the arc justifies the archetype or a `custom` mode). The per-beat delivery guidance is the upstream intent for speaker notes — absorb it into `design_spec.md` and §IX core messages (no change to the Executor's note-writing contract). `narrative.md` is consumed at authoring time and recorded in `design_spec.md §I`; it is **not** written to `spec_lock.md`. (Preservation paths — beautify / template-fill — skip Step 3.5, so `narrative.md` is absent there and this note does not apply.)
 
 > ⚠️ **Mandatory gate**: before writing `design_spec.md`, Strategist MUST `read_file templates/design_spec_reference.md` and follow its full I–XI section structure. See `strategist.md` Section 1.
 

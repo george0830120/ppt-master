@@ -8,7 +8,9 @@ As a top-tier AI presentation strategist, receive source documents, perform cont
 
 | Previous Step | Current | Next Step |
 |--------------|---------|-----------|
-| Project creation + Template option confirmed | **Strategist**: Eight Confirmations + Design Spec | Image_Generator or Executor |
+| Project creation + Template option + Narrative spine (`narrative.md`) settled | **Strategist**: Eight Confirmations + Design Spec | Image_Generator or Executor |
+
+> **`narrative.md` is the agreed narrative spine** (SKILL.md Step 3.5, [`narrative-planner.md`](narrative-planner.md)). On every main-pipeline run, read it before the Eight Confirmations: it is the §IX Content Outline input (beats → pages) and pre-settles audience (c), material divergence (c), and mode (d Layer 1). Present those three as *confirm-the-given*, not ask-fresh. Consumed at authoring time, recorded in `design_spec.md §I`; never written to `spec_lock.md`. Absent on preservation paths (beautify / template-fill), which skip Step 3.5.
 
 ---
 
@@ -42,6 +44,8 @@ Provide specific page count recommendation based on source document content volu
 
 Confirm target audience, usage occasion, and core message; provide initial assessment based on document nature.
 
+> **Pre-settled by `narrative.md` (default path).** When the narrative spine exists, **audience** and **material divergence** are already agreed — distil the narrative's Audience section into the one-line §I "Target Audience" and take the narrative itself as the divergence decision. Present both as *confirm-the-given*, not a fresh question; the user re-opens them only if they want to change direction. (No `narrative.md` — preservation paths — falls back to the from-scratch assessment below.)
+
 **Material divergence** — a **free-text** intent the user states beside audience (same content-strategy cluster): in their own words, how closely the deck should follow the source vs how freely it may reshape it. This is the user's own call — a free prose field (`content_divergence`), **not** a fixed set of options and **not** something you recommend from analyzing the source. Surface the question (in the confirm UI it is a text box under audience; in chat, ask it plainly); leave it for the user to fill. Blank = a balanced default.
 
 Read the user's prose as a point on a spectrum and apply judgment — from *stay close* (track the source's structure and wording, tune only for clarity, no substantive add / drop) through the default *balanced* (re-architect and distill into a narrative under the locked `mode`, keeping all substance) to *free* (regroup, reframe, expand terse points, draw out connections latent in the source, invent section structure and transitions).
@@ -61,6 +65,8 @@ Two independent layers, each locks one catalog item. Output: `d. Mode: <mode> + 
 🚧 **GATE**: read [`modes/_index.md`](./modes/_index.md) before recommending.
 
 The deck's **narrative + persuasion skeleton** — how the argument is organized and advanced. Lock **one** of `pyramid` / `narrative` / `instructional` / `showcase` / `briefing` (closed set; full catalog in the index).
+
+> **`narrative.md` justifies the mode (default path).** The agreed arc is the bespoke story; the mode is the reusable archetype that best carries it. Read the narrative's arc + per-beat purposes and pick the archetype that fits (or `custom` when a fusion / bespoke cadence serves it better). Present the pick as *confirm-the-given* with the arc as its rationale — the narrative does the structural thinking, the mode names the skeleton. The sources below still apply when no `narrative.md` exists (preservation paths) or when the user overrides.
 
 **Source**:
 - User supplied their own outline / structure → it is authoritative. Transcribe it into `§IX` as given (page order + titles preserved); still lock a mode, but for register / voice and page-internal treatment, **not** to reshape — never reorder the user's pages or rewrite their given titles. Note in `design_spec.md` that the structure is user-authored. `briefing` imposes the least if no particular "讲法" is intended.
@@ -731,6 +737,8 @@ Templates are starting points. The Strategist may adjust based on content and au
 ## 6. Workflow & Deliverables
 
 ### 6.1 Content Planning Strategy
+
+> **Materialize `narrative.md` into §IX (default path).** When the narrative spine exists, §IX is not authored from scratch — each **beat** becomes one or more pages under the confirmed page count, and each page's **core message** carries that beat's persuasive purpose. The beat order is the §IX page order; the per-beat delivery guidance seeds the speaker-notes intent (recorded in `design_spec.md`, realized at §X). Beats are not pages — you still decide how many pages each beat needs and design every page. (No `narrative.md` — preservation paths — falls back to authoring §IX directly from the source.)
 
 Content-outline and speaker-notes strategy follow the deck's locked **mode** — see [`modes/_index.md`](./modes/_index.md) and the locked mode's file. The guidance below applies within any mode:
 

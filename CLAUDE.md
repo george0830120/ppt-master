@@ -6,9 +6,11 @@ This file is the project entry point for Claude Code.
 
 ## Project Overview
 
-PPT Master is an AI-driven presentation generation system. Multi-role collaboration (Strategist → Image_Generator → Executor) converts source documents (PDF/DOCX/URL/Markdown) into natively editable PPTX with real PowerPoint shapes (DrawingML).
+PPT Master is an AI-driven presentation generation system. Multi-role collaboration (Narrative_Planner → Strategist → Image_Generator → Executor) converts source documents (PDF/DOCX/URL/Markdown) into natively editable PPTX with real PowerPoint shapes (DrawingML).
 
-**Core Pipeline**: `Source Document → Create Project → [Template] → Strategist Eight Confirmations → [Image_Generator] → Executor Live Preview → Quality Check → Post-processing → Export PPTX`
+**Core Pipeline**: `Source Document → Create Project → [Template] → Narrative Planning → Strategist Eight Confirmations → [Image_Generator] → Executor Live Preview → Quality Check → Post-processing → Export PPTX`
+
+> Narrative Planning (SKILL.md Step 3.5, role [`references/narrative-planner.md`](skills/ppt-master/references/narrative-planner.md)) runs by default before the Strategist on the main pipeline: it agrees the deck's narrative spine (audience / takeaway / argument arc / per-beat purpose / spoken delivery) and writes `narrative.md`, which feeds the Strategist's §IX outline and pre-settles audience / mode / divergence. It is default-on but the user may skip the discussion (the draft is always kept). Preservation paths (beautify / template-fill) skip it.
 
 > Topic-only requests with no source material: run the standalone [`topic-research`](skills/ppt-master/workflows/topic-research.md) workflow before SKILL.md Step 1 to gather web materials.
 >
